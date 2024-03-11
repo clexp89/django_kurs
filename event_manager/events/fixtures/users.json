@@ -1,0 +1,42 @@
+[
+{
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$6wsLzmwfvdxvQ9AVP36OEf$VScqbKuhgVMdjAK3HjjT2LYt0LOJHT2YCjEwqUQVktA=",
+        "last_login": "2024-03-11T12:09:56Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "asf@asdf.de",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-03-11T12:05:33Z",
+        "address": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$720000$x08KkWzpPPLXdY43WXlejL$shsI/gISgSzOoBmu0WSjTzSApdjK6ca3fexgNeWt7zM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "bob",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-03-11T12:16:50Z",
+        "address": null,
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+}
+]
