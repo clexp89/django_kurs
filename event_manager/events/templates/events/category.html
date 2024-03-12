@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Kategorie {{category}}</h1>
+<a href="{% url 'events:category_update' category.pk %}">Kategorie editieren</a>
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'events:categories' %}">Zurück zur Übersicht</a>
+<p>{{category.sub_title}}</p>
+<p>{{category.description}}</p>
+
+<h2>Events in Kategorie {{category}}</h2>
+
+<ul>
+    {% for event in category.get_events %}
+        <li><a href="{% url 'events:event' event.pk %}">
+            {{event}}</a>
+        </li>
+    {% empty %}
+        <li>Keine Einträge vorhanden!</li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock%}

@@ -1,16 +1,9 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth import get_user_model
-
+from event_manager.mixins import DateMixin
 
 User = get_user_model()
-
-
-class DateMixin(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)  # beim Anlegen
-    updated_at = models.DateTimeField(auto_now=True)  # beim Updaten aktualisieren
-
-    class Meta:
-        abstract = True  # lege keine Tabelle dafür an
 
 
 class Category(DateMixin):
@@ -30,6 +23,13 @@ class Category(DateMixin):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        # Verlinkung auf Detailseite der Kategorie
+        return reverse("events:category", kwargs={"pk": self.pk})
+
+    def get_events(self):
+        return Event.objects.select_related("author").filter(category=self)
 
 
 class Event(DateMixin):
@@ -65,6 +65,9 @@ class Event(DateMixin):
             min_group=self.min_group, category=self.category
         )
         return related_events.exclude(pk=self.pk)
+
+    def get_absolute_url(self):
+        return reverse("events:event", kwargs={"pk": self.pk})
 
     def __str__(self) -> str:
         return self.name

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load event_tags %}
+
+{% block head %}
+<h1>{{event}}</h1>
+<a href="{% url 'events:event_update' event.pk %}">editieren</a>
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'events:events' %}">Zurück zur Übersicht</a>
+<p>{{event.sub_title|default:"-"}}</p>
+<p>{{event.description|linebreaksbr}}</p>
+
+<!--Verlinkung auf Kategorie -->
+<p><a href="{% url 'events:category' event.category.pk %}">{{event.category}}</a></p>
+
+<h2>Ähnliche Events</h2>
+<ul>
+{% for related_event in event.related_events %}
+    <li><a href="{% url 'events:event' related_event.pk %}">
+        {{related_event}} [{{related_event.category}}] [{{related_event.author}}]</a>
+    </li>
+{% empty %}
+    <li>Keine Einträge vorhanden!</li>
+{% endfor %}
+</ul>
+
+{% endblock%}

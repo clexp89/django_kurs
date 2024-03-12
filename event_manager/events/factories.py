@@ -45,8 +45,4 @@ class EventFactory(factory.django.DjangoModelFactory):
         tzinfo=timezone.get_current_timezone(),
     )
     author = factory.Iterator(get_user_model().objects.all())
-    min_group = factory.LazyAttribute(
-        lambda e: random.choice(
-            Event.Group.values,
-        )
-    )
+    min_group = factory.LazyAttribute(lambda e: random.choice(Event.Group.values))

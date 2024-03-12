@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>{{object}}</h1>
+<a href="{% url 'artikelanlage:artikel_update' object.pk %}">editieren</a>
+{% endblock %}
+
+{% block content %}
+
+<a href="{% url 'artikelanlage:artikel_list' %}">Zurück zur Übersicht</a>
+
+{% endblock%}

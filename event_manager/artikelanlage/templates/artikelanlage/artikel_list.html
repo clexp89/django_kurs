@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Übersicht der Artikel</h1>
+<a href="{% url 'artikelanlage:artikel_create' %}">neuen artikel anlegen</a>
+{% endblock %}
+
+{% block content %}
+<ul>
+    {% for artikel in object_list %}
+        <li>
+            {{artikel}}
+        </li>
+    {% empty %}
+        <li>Keine Einträge vorhanden!</li>
+    {% endfor %}
+</ul>
+{% endblock%}
