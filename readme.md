@@ -17,3 +17,9 @@
 - Django Debug Toolbar: `https://djangoheroes.friendlybytes.net/working_with_forms/debug_toolbar.html`
 - Welche Klassen: `https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b`
 - Crispy Forms: `https://django-crispy-forms.readthedocs.io/` (Formularverarbeitung)
+
+
+- Shawarma - Habibi: https://maps.app.goo.gl/AamBLfT1Lm98mqX67
+- Indisch - Ginti: https://maps.app.goo.gl/fJ9HtPDndDjDSruH6
+- Libanesisch - Neni: https://maps.app.goo.gl/btaKn5jS31MBSwoeA
+- Burger - Fette Kuh: https://maps.app.goo.gl/1eNwjxouKgFJyLcbA
