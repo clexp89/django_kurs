@@ -3,7 +3,13 @@
 
 {% block head %}
 <h1>{{event}}</h1>
-<a href="{% url 'events:event_update' event.pk %}">editieren</a>
+
+ 
+{% if user == event.author or user|is_group_member:"Moderatoren" %}
+<a href="{% url 'events:event_update' event.pk %}">editieren</a> |
+<a href="{% url 'events:event_delete' event.pk %}">löschen</a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}

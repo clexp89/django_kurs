@@ -8,7 +8,7 @@ User = get_user_model()
 
 class Konto(DateMixin):
     nummer = models.PositiveIntegerField(unique=True)
-    bezeichnung = models.CharField(max_length=40)
+    bezeichnung = models.CharField(max_length=40, verbose_name="Konto Bezeichnung")
 
     def __str__(self) -> str:
         return f"{self.bezeichnung} ({self.nummer})"

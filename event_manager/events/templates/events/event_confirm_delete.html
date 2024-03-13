@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <h1>Event löschen</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-12">
+
+<p>
+<a href="{% url 'events:events' %}">Zurück zur Übersicht</a>
+</p>
+
+<p>Willst Du den Event {{object}} wirklich löschen?</p>
+
+<div>
+<form method="POST">
+{% csrf_token %}
+<button class="btn btn-primary">Event jetzt löschen</button>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

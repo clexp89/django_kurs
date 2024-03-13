@@ -1,7 +1,11 @@
+from functools import partial
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
 from event_manager.mixins import DateMixin
+from . import validators
 
 User = get_user_model()
 
@@ -43,12 +47,29 @@ class Event(DateMixin):
 
     name = models.CharField(
         max_length=200,
+        validators=[
+            MinLengthValidator(3, message="Name ist kurz!"),
+        ],
     )
-    sub_title = models.CharField(max_length=200, null=True, blank=True)
+    sub_title = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        help_text="Wenn Kategorie science, darf hier nicht science stehen",
+    )
     description = models.TextField(
-        help_text="Beschreibung des Events", verbose_name="Beschreibung"
+        help_text="Beschreibung des Events",
+        verbose_name="Beschreibung",
+        validators=[
+            validators.BadWordFilter(evil_word_list=["evil", "doof"])
+            # partial(validators.bad_word_filter, ["evil", "doof"]),
+        ],
     )
-    date = models.DateTimeField()
+    date = models.DateTimeField(
+        validators=[
+            validators.datetime_in_future,
+        ]
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
@@ -71,3 +92,10 @@ class Event(DateMixin):
 
     def __str__(self) -> str:
         return self.name
+
+    # def clean(self) -> None:
+    #     """Crossfield Validation auf Model-Ebene."""
+    #     if self.category.name == "Science" and not self.is_active:
+    #         raise ValidationError(
+    #             "Wenn Sciene ausgewählt ist, muss das Event aktiv sein"
+    #         )

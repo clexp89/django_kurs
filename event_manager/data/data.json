@@ -1,0 +1,14 @@
+{
+    "nummer": "saffd",
+    "mengeneinheit": "KG",
+    "bezeichnung_1": "asdf",
+    "bezeichnung_2": null,
+    "lieferant": 2,
+    "lieferant_artikel_nr": null,
+    "konto": 2,
+    "zeichnungs_nummer": null,
+    "anforderer": 1,
+    "gewicht": null,
+    "ist_angelegt": false,
+    "anforderungsdatum": "22.03.2024"
+}

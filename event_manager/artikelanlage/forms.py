@@ -7,6 +7,7 @@ class ArtikelForm(forms.ModelForm):
     class Meta:
         model = Artikel
         fields = "__all__"
+        exclude = ("anforderer", "ist_angelegt")
 
         widgets = {
             "anforderungsdatum": forms.DateInput(
@@ -16,3 +17,12 @@ class ArtikelForm(forms.ModelForm):
                 },
             ),
         }
+
+
+class ArtikelUpdateForm(ArtikelForm):
+    class Meta(ArtikelForm.Meta):
+        exclude = ()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["anforderer"].disabled = True

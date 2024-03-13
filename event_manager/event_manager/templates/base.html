@@ -48,28 +48,17 @@
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><span class="dropdown-item">{{user}}</span></li>
             <li><a class="dropdown-item" href="#">Event anlegen</a></li>
 
-            {% comment %} 
-            <!-- PASSWORD CHANGE: Freischalten, wenn der Login und Signup implementiert wird -->
-            <li><a class="dropdown-item" href="{% url 'password_change' %}">Passwort ändern</a></li>
-            {% endcomment %}
-            <li><a class="dropdown-item" href="">Passwort ändern</a></li>
             <li><hr class="dropdown-divider"></li>
 
-            {% comment %} 
-            <!-- LOGOUT: Freischalten, wenn der Login und Signup implementiert wird -->
             <li>
-                <!-- ab django 4.2 ist kein logout per GET mehr erlaubt! -->
                 <form method="POST" 
                       action="{% url 'logout' %}">
                         {% csrf_token %}
                       <button class="dropdown-item">Sign out</button>
                 </form>
-            </li>
-            {% endcomment %}
-            <li>
-              <a class="dropdown-item" href="">Sign out</a>
             </li>
 
           </ul>
@@ -77,25 +66,12 @@
 
           {% else %}
 
-          {% comment %} 
           <!-- das Freischalten, wenn der Login und Signup implementiert wird -->
           <a href="{% url 'login' %}">
           <button type="button" class="btn btn-outline-light me-2">Login</button>
           </a>
-          {% endcomment %}
-          <a href="">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          </a>
 
-          {% comment %} 
-          <!-- das Freischalten, wenn der Login und Signup implementiert wird -->
-          <a href="{% url 'user:signup' %}">
-          {% endcomment %}
-          <a href="">
-          <button type="button" class="btn btn-warning">Sign-up</button>
-          </a>
-
-         {% endif %}
+          {% endif %}
         </div>
       </div>
     </div>
@@ -107,6 +83,8 @@
 <div class="row">
     <div class="col-12" style="margin-top:25px;">
     {% block head %}{% endblock %}
+
+    {% include "snippets/messages.html" %}
     </div>
 </div>
 </div>

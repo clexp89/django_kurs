@@ -18,7 +18,13 @@
 - Welche Klassen: `https://medium.com/@ksarthak4ever/django-class-based-views-vs-function-based-view-e74b47b2e41b`
 - Crispy Forms: `https://django-crispy-forms.readthedocs.io/` (Formularverarbeitung)
 
+## Tag 3
+- `https://de.wikipedia.org/wiki/Currying`
+- `https://www.geeksforgeeks.org/partial-functions-python/`
+- `https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/`
 
+
+## Essen
 - Shawarma - Habibi: https://maps.app.goo.gl/AamBLfT1Lm98mqX67
 - Indisch - Ginti: https://maps.app.goo.gl/fJ9HtPDndDjDSruH6
 - Libanesisch - Neni: https://maps.app.goo.gl/btaKn5jS31MBSwoeA

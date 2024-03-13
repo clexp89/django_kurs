@@ -6,13 +6,16 @@
 {% endblock %}
 
 {% block content %}
-<ul>
+<ul class="list-group event_box">
     {% for event in object_list %}
-        <li><a href="{% url 'events:event' event.pk %}">
-            {{event}} [{{event.category}}] [{{event.author}}]</a>
-        </li>
-    {% empty %}
-        <li>Keine Einträge vorhanden!</li>
-    {% endfor %}
-</ul>
+    <a href="{% url 'events:event' event.pk %}">
+    <li class="list-group-item rounded">
+    <small><span>am {{event.date}}</span></small><br>
+    <b>{{event.name}}</b>
+        <span class="badge rounded-pill bg-primary">{{event.category}}</span>
+        <p>by {{event.author}}</p>
+    </li>
+    </a>
+    {% endfor%}
+    </ul>
 {% endblock%}

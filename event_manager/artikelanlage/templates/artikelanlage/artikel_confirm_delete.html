@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+
+    {% if object %}
+    <h1>artikel bearbeiten</h1>
+    {% else %}
+    <h1>neuen artikel anlegen</h1>
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-12">
+
+<h2>Artikel sicher löschen?</h2>
+<p>
+<a href="{% url 'artikelanlage:artikel_list' %}">Zurück zur Übersicht</a>
+</p>
+
+<div>
+<form method="POST">
+{% csrf_token %}
+<button class="btn btn-primary">Artikel löschen</button>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

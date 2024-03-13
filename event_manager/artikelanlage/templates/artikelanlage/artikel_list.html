@@ -7,9 +7,16 @@
 
 {% block content %}
 <ul>
+    <li><a href="{% url 'artikelanlage:artikel_list' %}">Zeige alle Artikel</a></li>
+    <li><a href="{% url 'artikelanlage:artikel_list' %}?angelegt=1">Zeige angelegte Artikel</a></li>
+    <li><a href="{% url 'artikelanlage:artikel_list' %}?angelegt=2">Zeige nicht angelegte Artikel</a></li>
+</ul>
+<ul>
     {% for artikel in object_list %}
         <li>
-            {{artikel}}
+            <a href="{% url 'artikelanlage:artikel' artikel.pk %}">
+                {{artikel}} [{{artikel.ist_angelegt}}]
+            </a>
         </li>
     {% empty %}
         <li>Keine Einträge vorhanden!</li>

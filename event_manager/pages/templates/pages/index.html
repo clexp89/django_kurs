@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h1>Homepage</h1>
+<a href="{% url 'events:event_create' %}">neuen Event anlegen</a>
+{% endblock %}
+
+{% block content %}
+
+<h2>Top Events</h2>
+<ul>
+    {% for event in events %}
+        <li><a href="{% url 'events:event' event.pk %}">
+            {{event}} [{{event.category}}] [{{event.author}}]</a>
+        </li>
+    {% empty %}
+        <li>Keine Einträge vorhanden!</li>
+    {% endfor %}
+</ul>
+
+<h2>Top Categories</h2>
+<ul>
+    {% for category in categories %}
+        <li><a href="{% url 'events:category' category.pk %}">{{category}}</a></li>
+    {% empty %}
+        <li>Keine Einträge vorhanden!</li>
+    {% endfor %}
+</ul>
+
+{% endblock%}

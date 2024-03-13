@@ -1,11 +1,23 @@
 {% extends 'base.html' %}
+{% load artikelanlage_tags %}
 
 {% block head %}
 <h1>{{object}}</h1>
-<a href="{% url 'artikelanlage:artikel_update' object.pk %}">editieren</a>
+
+{% if not object.ist_angelegt %}
+<a href="{% url 'artikelanlage:artikel_update' object.pk %}">editieren</a> | 
+<a href="{% url 'artikelanlage:artikel_delete' object.pk %}">löschen</a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
+<p>
+{{ object.konto|verbose_name:"bezeichnung" }}: {{ object.konto.bezeichnung }}
+</p>
+<p>
+Ist angelegt: {{object.ist_angelegt}}
+</p>
 
 <a href="{% url 'artikelanlage:artikel_list' %}">Zurück zur Übersicht</a>
 
