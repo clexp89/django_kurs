@@ -2,7 +2,11 @@
 
 {% block head %}
 <h1>Homepage</h1>
+{% comment %}
+<!-- todo: Event anlegen ohne Kategorie auch erlauben. Aktuell 
+geht es nur über Kategorieseite -->
 <a href="{% url 'events:event_create' %}">neuen Event anlegen</a>
+{% endcomment %}
 {% endblock %}
 
 {% block content %}

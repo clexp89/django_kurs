@@ -1,3 +1,5 @@
+import logging
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -7,6 +9,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -14,6 +17,8 @@ from django.http import HttpResponse
 from django.contrib import messages
 from . import models
 from .forms import CategoryForm, EventForm
+
+logger = logging.getLogger("events")
 
 
 def is_moderator(user):
@@ -29,24 +34,37 @@ class UserIsOwnerMixin(UserPassesTestMixin):
 
 class EventCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     """
-    events/create
+    für Kategorie 3 einen Event anlegen
+    events/create/3
     Default-Template: event_form.html
     falls get_absolute_url implementiert ist, wird dorthin
     weitergeleitet
 
-    Todo: Prüfen, ob eingeloggt
     """
 
     model = models.Event
     form_class = EventForm
-    # success_url = "events:events"
     success_message = "Event wurde erfolgreich eingetragen"
 
+    def get_initial(self) -> dict:
+        """Prüfen, ob die gewählte Kategorie überhaupt existiert."""
+        self.category = get_object_or_404(
+            models.Category, pk=self.kwargs["category_id"]
+        )
+        # Über initial
+        initial = super().get_initial()
+        # initial["category"] = self.kwargs["category_id"]
+        return initial
+
     def form_valid(self, form):
-        print("form:", form.__dict__)
-        print(self.request.POST)
+
+        # Kategorie und Author mit Werten belegen
+        form.instance.category = self.category
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def get_success_url(self) -> str:
+        return self.category.get_absolute_url()
 
 
 class EventDeleteView(UserIsOwnerMixin, SuccessMessageMixin, DeleteView):
@@ -83,15 +101,40 @@ class EventDetailView(DetailView):
     model = models.Event
 
 
-class EventListView(LoginRequiredMixin, ListView):
+class EventListView(ListView):
     """
     events/
     Default-Template: event_list.html
     """
 
     model = models.Event
-    queryset = models.Event.objects.select_related("category", "author")
-    # template_name
+    # queryset = models.Event.active_objects.select_related("category", "author")
+    queryset = models.Event.objects.active().travel()
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs) -> dict:
+        ctx = super().get_context_data(**kwargs)
+        ctx["suchwort"] = self.s
+        return ctx
+
+    def get_queryset(self):
+
+        qs = super().get_queryset()
+        search_str = self.request.GET.get("q")
+        self.s = search_str
+        logger.info(f"Suchwort war {search_str}")
+        if search_str:
+            # /events/?q=test
+            new_qs = qs.filter(
+                Q(name__contains=search_str) | Q(sub_title__contains=search_str)
+            )
+            if not new_qs:
+                messages.warning(self.request, "Begriff wurde nicht gefunden.")
+                return new_qs
+            else:
+                qs = new_qs
+
+        return qs
 
 
 def category_update(request, pk) -> HttpResponse:
@@ -121,12 +164,10 @@ def category_create(request) -> HttpResponse:
     events/category/create GET und POST auf
     """
     if request.method == "POST":
-        form = CategoryForm(request.POST or None)
+        form = CategoryForm(request.POST, request.FILES)
         if form.is_valid():
-            category = form.save(commit=True)  # commit=False speichert nicht in DB
-            # category.author = request.user
-            # category.save()
-            # return redirect("events:categories")  # Redirect auf Übersichtsseite
+            category = form.save(commit=False)  # commit=False speichert nicht in DB
+            form.save()
             return redirect(category)
     else:
         form = CategoryForm()

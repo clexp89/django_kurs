@@ -17,7 +17,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = models.Event
         fields = "__all__"
-        exclude = ("author",)
+        exclude = ("author", "category")
 
         widgets = {
             "date": forms.DateInput(
@@ -28,7 +28,7 @@ class EventForm(forms.ModelForm):
             ),
         }
 
-    message = forms.CharField(max_length=30)
+    # message = forms.CharField(max_length=30)
 
     def clean_message(self) -> str:
         message = self.cleaned_data["message"]

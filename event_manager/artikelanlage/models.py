@@ -48,9 +48,9 @@ class Artikel(DateMixin):
         Lieferant, on_delete=models.SET_NULL, null=True, blank=True
     )
     lieferant_artikel_nr = models.CharField(max_length=40, null=True, blank=True)
-    konto = models.ForeignKey(Konto, on_delete=models.PROTECT)
+    konto = models.ForeignKey(Konto, on_delete=models.CASCADE)
     zeichnungs_nummer = models.CharField(max_length=20, null=True, blank=True)
-    anforderer = models.ForeignKey(User, on_delete=models.PROTECT)
+    anforderer = models.ForeignKey(User, on_delete=models.CASCADE)
     gewicht = models.DecimalField(
         max_digits=10, decimal_places=3, null=True, blank=True
     )

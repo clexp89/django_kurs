@@ -7,12 +7,48 @@
 
 {% block content %}
 
-<ul>
-{% for category in categories %}
-    <li><a href="{% url 'events:category' category.pk %}">{{category}}</a></li>
-{% empty %}
-    <li>Keine Einträge vorhanden!</li>
-{% endfor %}
-</ul>
+<table class="table display" id="categories">
+    <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Sub_title</th>
+          <th scope="col">Anzahl Events</th>
+        </tr> 
+      </thead>
+      <tbody>
+        {% for category in categories %}
+        <tr>
+            <td><a href="{% url 'events:category' category.pk %}">{{category.pk}}</a></td>
+            <td>{{category}}</td>
+            <td>{{category.sub_title}}</td>
+            <td>{{category.events.count}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
+<script>
+    window.onload = function(){
+        new DataTable('#categories', {
+          "order": [],
+          "language": {
+            "oPaginate": {
+                "sFirst":    "Erster",
+                "sLast":    "Letzer",
+                "sNext":    "Nächste",
+                "sPrevious": "Vorherige"
+            },
+            "sSearch": "Suche:",
+            "sEmptyTable":    "Keine Einträge vorhanden",
+            "sInfo": "Zeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "sInfoEmpty":     "Zeige 0 von 0 von 0 Einträgen",
+            "sZeroRecords":   "Keine Treffer gefunden!",
+            "sInfoFiltered":  "(aus _MAX_ Einträgen gefilert)",
+            "sLengthMenu":    "Zeige _MENU_ Einträge",
+            }
+        });
+    };
+</script>
 
 {% endblock%}

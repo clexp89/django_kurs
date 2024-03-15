@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block head %}
+
+{% if suchwort %}
+<h1>Ergebnis der Suche nach: {{suchwort}}</h1>
+{% else %}
 <h1>Übersicht der Events</h1>
+{% endif %}
+
+{% comment %}
 <a href="{% url 'events:event_create' %}">neuen Event anlegen</a>
+{% endcomment %}
 {% endblock %}
 
 {% block content %}
@@ -13,9 +21,12 @@
     <small><span>am {{event.date}}</span></small><br>
     <b>{{event.name}}</b>
         <span class="badge rounded-pill bg-primary">{{event.category}}</span>
-        <p>by {{event.author}}</p>
+        <span class="badge rounded-pill {{ event.is_active|yesno:"bg-success,bg-danger,bg-info" }}">{{event.is_active}}</span>
+        <p>by {{event.author}} </p>
     </li>
     </a>
     {% endfor%}
     </ul>
+
+{% include 'snippets/paginator.html' %}
 {% endblock%}

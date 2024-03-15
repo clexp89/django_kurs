@@ -1,7 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from django.utils.deconstruct import deconstructible
 
 
+@deconstructible
 class BadWordFilter:
     """Prüfe, ob in field_value ein Begriff aus word_list enthalten ist.
     wird als BadWordFilter(["evil", "bad"]) in validators gepackt.

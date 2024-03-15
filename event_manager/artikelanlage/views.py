@@ -2,6 +2,7 @@ import json
 import pathlib
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.exceptions import BadRequest
 from django.contrib.messages.views import SuccessMessageMixin
@@ -14,9 +15,11 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms.models import model_to_dict
+from django.conf import settings
+
 from .models import Artikel
 from .forms import ArtikelForm, ArtikelUpdateForm
-from django.conf import settings
+from .serializers import ArtikelSerializer
 
 
 class VerhindereEditMixin:
@@ -26,11 +29,11 @@ class VerhindereEditMixin:
         return super().get_initial()
 
 
-class ArtikelDetailView(LoginRequiredMixin, DetailView):
+class ArtikelDetailView(DetailView):
     model = Artikel
 
 
-class ArtikelListView(LoginRequiredMixin, ListView):
+class ArtikelListView(ListView):
     model = Artikel
     # queryset = Artikel.objects.filter(ist_angelegt=False)
 
@@ -63,14 +66,15 @@ class ArtikelUpdateView(
 
 def save_model_to_json(model):
     try:
-        d = model_to_dict(model)
-        d.pop("id")
-        d["anforderungsdatum"] = d["anforderungsdatum"].strftime("%d.%m.%Y")
+        s = ArtikelSerializer(model)
+
         with open(settings.JSON_DATA_DIR / "data.json", mode="w") as f:
-            json.dump(d, f, indent=4)
+            json.dump(s.data, f, indent=4)
+            return True
     except:
         # todo: LOG ERROR
         pass
+    return False
 
 
 class ArtikelCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -87,7 +91,9 @@ class ArtikelCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         form.instance.anforderer = self.request.user
         result = save_model_to_json(form.instance)
         if result:
-            messages.
+            messages.info(
+                self.request, "Json wurde erfolgreich serialisiert und gespeichert."
+            )
 
         return super().form_valid(form)
 

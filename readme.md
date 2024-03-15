@@ -24,6 +24,25 @@
 - `https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/`
 
 
+## Tag 4
+- `https://docs.celeryq.dev/en/stable/getting-started/introduction.html` Celery Task Key
+- Django Extensions: `https://django-extensions.readthedocs.io/`
+- Django Filter: `https://django-filter.readthedocs.io/` (Gut für aufwändige Filter-Aufgaben)
+- Gute Django Videos: `https://www.youtube.com/@bugbytes3923` (u.a. Django-Filter)
+- View Inspektor: `https://ccbv.co.uk`
+- `https://docs.djangoproject.com/en/5.0/ref/contrib/sites/`
+
+## Tag 5
+
+- curl -X POST -d 'name=erweewr&date=2025-12-12&min_group=2&category=74&author=1&description=test' http://127.0.0.1:8000/api/events
+- curl -X PATCH -d 'name=YYYY' http://127.0.0.1:8000/api/events/179
+- curl -X DELETE http://127.0.0.1:8000/api/events/179
+- curl -X POST -d "username=alice&password=1234"  http://127.0.0.1:8000/api/token
+- curl -X PATCH -d 'name=YYYY' -H "Authorization: Token c08fe22750fa109381c28e6e35a39a" http://127.0.0.1:8000/api/events/150
+
+## MISC
+- `https://www.humblebundle.com/` 
+
 ## Essen
 - Shawarma - Habibi: https://maps.app.goo.gl/AamBLfT1Lm98mqX67
 - Indisch - Ginti: https://maps.app.goo.gl/fJ9HtPDndDjDSruH6

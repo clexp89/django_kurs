@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from event_manager.mixins import DateMixin
 from . import validators
+from .managers import ActiveManager, SuperManager, EventQuerySet
 
 User = get_user_model()
 
@@ -19,6 +20,7 @@ class Category(DateMixin):
     )
     sub_title = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(help_text="Beschreibung der Kategorie")
+    image = models.FileField(upload_to="images", null=True, blank=True)
 
     class Meta:
         verbose_name = "Kategorie"
@@ -79,6 +81,14 @@ class Event(DateMixin):
     is_active = models.BooleanField(default=True)
     min_group = models.PositiveSmallIntegerField(choices=Group.choices)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="events")
+
+    # der objects-Manager (default) muss oben stehen.
+    objects = SuperManager.from_queryset(EventQuerySet)()
+    # Event.objects.active().all()
+    # active_objects = ActiveManager()
+
+    class Meta:
+        ordering = ["name"]
 
     def related_events(self):
         """Alle Events, die diesem Event ähnlich sind."""

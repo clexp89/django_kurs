@@ -1,3 +1,6 @@
 django==5.0.3
 django-crispy-forms
 crispy-bootstrap5
+django-extensions
+django-environ
+djangorestframework

@@ -11,6 +11,10 @@
 <p>{{category.sub_title}}</p>
 <p>{{category.description}}</p>
 
+<div class="mb-5 mt-5">
+<a href="{% url 'events:event_create' category.pk %}" class="btn btn-primary">Neuen Event in {{category}} eintragen</a>
+</div>
+
 <h2>Events in Kategorie {{category}}</h2>
 
 <ul>
