@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -16,7 +17,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse
 from django.contrib import messages
 from . import models
-from .forms import CategoryForm, EventForm
+from .forms import CategoryForm, EventForm, FileUploadForm
+from django.conf import settings
 
 logger = logging.getLogger("events")
 
@@ -30,6 +32,31 @@ class UserIsOwnerMixin(UserPassesTestMixin):
         return (self.request.user == self.get_object().author) or is_moderator(
             self.request.user
         )
+
+
+def handle_uploaded_files(files):
+    # save_to = Path(__file__).parent.parent / "data"
+    save_to = settings.JSON_DATA_DIR
+    for f in files:
+        filepath = save_to / f.name
+        with open(filepath, "wb+") as dest:
+            # write in chunks to avoid RAM overflow
+            for chunk in f.chunks():
+                dest.write(chunk)
+
+
+def upload_files(request):
+    """View zum Hochladen und Verarbeiten von Dateien."""
+    if request.method == "POST":
+        form = FileUploadForm(request.POST, request.FILES)
+        files = request.FILES.getlist("files")
+        handle_uploaded_files(files)
+        # return redirect()
+        return HttpResponse("Files successfully uploaded")
+    else:
+        form = FileUploadForm()
+
+    return render(request, "events/file_upload.html", {"form": form})
 
 
 class EventCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):

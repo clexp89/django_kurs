@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +63,24 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Event Manager API",
+    "DESCRIPTION": "eine Api-Beschreibungen für die Event-Manager Applikation",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
+    # "SERVE_AUTHENTICATION": ["rest_framework.authentication.SessionAuthentication"],
+    # "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAuthenticated"],
+    # OTHER SETTINGS
+}
 
 LOGGING = {
     "version": 1,

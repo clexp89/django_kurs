@@ -6,6 +6,10 @@
 #
 asgiref==3.7.2
     # via django
+attrs==23.2.0
+    # via
+    #   jsonschema
+    #   referencing
 crispy-bootstrap5==2024.2
     # via -r .\requirements.in
 django==5.0.3
@@ -15,6 +19,8 @@ django==5.0.3
     #   django-crispy-forms
     #   django-extensions
     #   djangorestframework
+    #   drf-spectacular
+    #   drf-spectacular-sidecar
 django-crispy-forms==2.1
     # via
     #   -r .\requirements.in
@@ -24,10 +30,34 @@ django-environ==0.11.2
 django-extensions==3.2.3
     # via -r .\requirements.in
 djangorestframework==3.14.0
+    # via
+    #   -r .\requirements.in
+    #   drf-spectacular
+drf-spectacular==0.27.1
     # via -r .\requirements.in
+drf-spectacular-sidecar==2024.3.4
+    # via -r .\requirements.in
+inflection==0.5.1
+    # via drf-spectacular
+jsonschema==4.21.1
+    # via drf-spectacular
+jsonschema-specifications==2023.12.1
+    # via jsonschema
 pytz==2024.1
     # via djangorestframework
+pyyaml==6.0.1
+    # via drf-spectacular
+referencing==0.33.0
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
+rpds-py==0.18.0
+    # via
+    #   jsonschema
+    #   referencing
 sqlparse==0.4.4
     # via django
 tzdata==2024.1
     # via django
+uritemplate==4.1.1
+    # via drf-spectacular

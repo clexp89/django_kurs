@@ -30,10 +30,15 @@
 - Django Filter: `https://django-filter.readthedocs.io/` (Gut für aufwändige Filter-Aufgaben)
 - Gute Django Videos: `https://www.youtube.com/@bugbytes3923` (u.a. Django-Filter)
 - View Inspektor: `https://ccbv.co.uk`
-- `https://docs.djangoproject.com/en/5.0/ref/contrib/sites/`
+- `https://docs.djangoproject.com/en/5.0/ref/contrib/sites/` Django Site Framework
 
 ## Tag 5
 
+- `https://www.django-rest-framework.org/` Django Restframework
+- `https://djangoheroes.friendlybytes.net/webapi/restful_api.html`  Restapi Infos
+- `https://drf-spectacular.readthedocs.io/en/latest/` 
+
+### API Curls
 - curl -X POST -d 'name=erweewr&date=2025-12-12&min_group=2&category=74&author=1&description=test' http://127.0.0.1:8000/api/events
 - curl -X PATCH -d 'name=YYYY' http://127.0.0.1:8000/api/events/179
 - curl -X DELETE http://127.0.0.1:8000/api/events/179

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+    <h1>File Upload</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-lg-6 col-12">
+
+<div>
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{form|crispy}}
+<button class="btn btn-primary">Formular absenden</button>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}

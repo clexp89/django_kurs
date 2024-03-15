@@ -3,6 +3,19 @@ from django.core.exceptions import ValidationError
 from . import models
 
 
+class FileUploadForm(forms.Form):
+    files = forms.FileField(
+        widget=forms.TextInput(
+            attrs={
+                "type": "File",
+                "multiple": True,
+                "accept": "text/plain,application/msword",
+            }
+        ),
+        label="File Upload",
+    )
+
+
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = models.Category

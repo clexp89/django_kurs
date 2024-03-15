@@ -4,3 +4,5 @@ crispy-bootstrap5
 django-extensions
 django-environ
 djangorestframework
+drf-spectacular
+drf-spectacular-sidecar

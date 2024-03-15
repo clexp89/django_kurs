@@ -676,3 +676,61 @@ Traceback (most recent call last):
                        ^^^^^^^^^^^^
 AttributeError: 'IsOwnerOrReadonly' object has no attribute 'request'
 ERROR basehttp 2024-03-15 14:28:28,487 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /api/events/150 HTTP/1.1" 500 119852
+WARNING log 2024-03-15 14:30:28,428 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyForbidden: /api/events/152
+WARNING basehttp 2024-03-15 14:30:28,428 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"PATCH /api/events/152 HTTP/1.1" 403 67
+WARNING log 2024-03-15 14:30:44,983 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+WARNING log 2024-03-15 14:30:47,441 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+WARNING log 2024-03-15 14:46:14,293 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+WARNING log 2024-03-15 15:03:39,658 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyBad Request: /api/events
+WARNING basehttp 2024-03-15 15:03:39,658 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"POST /api/events HTTP/1.1" 400 64
+WARNING log 2024-03-15 15:03:48,927 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyBad Request: /api/events
+WARNING basehttp 2024-03-15 15:03:48,928 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"POST /api/events HTTP/1.1" 400 64
+WARNING log 2024-03-15 15:03:57,039 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyBad Request: /api/events
+WARNING basehttp 2024-03-15 15:03:57,040 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"POST /api/events HTTP/1.1" 400 64
+WARNING log 2024-03-15 15:05:25,214 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyBad Request: /api/events/183
+WARNING basehttp 2024-03-15 15:05:25,215 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"PATCH /api/events/183 HTTP/1.1" 400 66
+WARNING log 2024-03-15 15:06:08,866 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyForbidden: /api/events/162
+WARNING basehttp 2024-03-15 15:06:08,866 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"PATCH /api/events/162 HTTP/1.1" 403 67
+WARNING basehttp 2024-03-15 15:26:21,317 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING log 2024-03-15 15:26:21,472 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+ERROR log 2024-03-15 15:26:36,345 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyInternal Server Error: /events/upload
+Traceback (most recent call last):
+  File "C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\django_projects\event_project\event_manager\events\views.py", line 42, in upload_files
+    return render(request, "events/file_upload.html", {"form": form})
+                                                               ^^^^
+UnboundLocalError: cannot access local variable 'form' where it is not associated with a value
+ERROR basehttp 2024-03-15 15:26:36,377 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"POST /events/upload HTTP/1.1" 500 78617
+WARNING basehttp 2024-03-15 15:28:19,917 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+ERROR log 2024-03-15 15:28:20,491 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyInternal Server Error: /events/upload
+Traceback (most recent call last):
+  File "C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\django_projects\event_project\event_manager\events\views.py", line 42, in upload_files
+    return render(request, "events/file_upload.html", {"form": form})
+                                                               ^^^^
+UnboundLocalError: cannot access local variable 'form' where it is not associated with a value
+ERROR basehttp 2024-03-15 15:28:20,535 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"POST /events/upload HTTP/1.1" 500 78619
+WARNING basehttp 2024-03-15 15:28:25,001 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING log 2024-03-15 15:28:25,059 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+WARNING basehttp 2024-03-15 15:31:27,814 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING log 2024-03-15 15:31:27,973 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+WARNING basehttp 2024-03-15 15:31:33,574 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:31:39,370 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:31:42,569 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:31:47,762 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:32:00,445 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:32:04,519 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING log 2024-03-15 15:32:45,413 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\utils\log.pyNot Found: /favicon.ico
+WARNING basehttp 2024-03-15 15:36:58,812 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:38:55,347 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816
+WARNING basehttp 2024-03-15 15:40:21,165 C:\Users\user1\django_projects\eventenv\Lib\site-packages\django\core\servers\basehttp.py"GET /static/images/penglogo.png HTTP/1.1" 404 1816

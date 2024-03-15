@@ -4,6 +4,7 @@ from . import views
 app_name = "events"  # events:categories
 
 urlpatterns = [
+    path("upload", views.upload_files, name="file_upload"),
     path("", views.EventListView.as_view(), name="events"),
     path(
         "create/<int:category_id>",
